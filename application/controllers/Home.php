@@ -5,6 +5,6 @@ class Home extends LSA_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/auth/login');
+		$this->load->view('frontend/comingsoon');
 	}
 }
