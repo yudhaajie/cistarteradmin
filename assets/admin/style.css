@@ -4119,14 +4119,14 @@ body.top-menu .navbar-left .customizer-trigger + .top-menu {
 }
 .navbar-left .navbar-brand svg,
 .navbar-left .navbar-brand img {
-  max-width: 160px;
-  min-width: 160px;
+  max-width: 40px;
+  min-width: 30px;
 }
 @media only screen and (max-width: 575px) {
   .navbar-left .navbar-brand svg,
   .navbar-left .navbar-brand img {
-    max-width: 130px;
-    min-width: 130px;
+    max-width: 30px;
+    min-width: 20px;
   }
 }
 .navbar-left .navbar-brand svg text span,
@@ -20497,17 +20497,18 @@ table.table-rounded tbody tr td:last-child {
 .coming-soon {
   padding: 120px 0;
 }
-.coming-soon svg,
+/* .coming-soon svg,
 .coming-soon img {
-  width: 250px;
-  height: 100px;
+  /* width: 250px; */
+  /* height: 100px; */
+	width: auto;
 }
 @media only screen and (max-width: 575px) {
   .coming-soon svg,
   .coming-soon img {
     width: 150px;
   }
-}
+} */
 @media only screen and (max-width: 1399px) {
   .coming-soon {
     padding: 60px 0;

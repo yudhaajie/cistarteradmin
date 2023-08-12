@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<title>HexaDash</title>
+	<title><?=(isset($sidebar['page'])) ? ucwords($sidebar['page']) : "Admin Panel" ?> </title>
 	<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/vendor_assets/css/bootstrap/bootstrap.css" />
 	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/vendor_assets/css/daterangepicker.css" />
@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/vendor_assets/css/trumbowyg.min.css" />
 	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/vendor_assets/css/wickedpicker.min.css" />
 	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/style.css" />
-	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="<?=base_url('assets/images/favicon.png')?>" />
 	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 

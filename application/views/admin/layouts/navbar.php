@@ -2,7 +2,7 @@
  <header class="header-top">
  	<nav class="navbar navbar-light">
  		<div class="navbar-left">
- 			<div class="logo-area"><a class="navbar-brand" href="index.html"><img class="dark" src="<?= base_url() ?>assets/admin/img/logo-dark.png" alt="logo" /><img class="light" src="<?= base_url() ?>assets/admin/img/logo-white.png" alt="logo" /></a><a href="#" class="sidebar-toggle"><img class="svg" src="<?= base_url() ?>assets/admin/img/svg/align-center-alt.svg" alt="img" /></a></div>
+ 			<div class="logo-area"><a class="navbar-brand" href="<?=base_url('admin')?>"><img class="img-fluid" src="<?= base_url() ?>assets/images/logo.png?v=100" alt="logo" /></a><a href="#" class="sidebar-toggle"><img class="svg" src="<?= base_url() ?>assets/admin/img/svg/align-center-alt.svg" alt="img" /></a></div>
  		</div>
  		<div class="navbar-right">
  			<ul class="navbar-right__menu">
@@ -87,7 +87,7 @@
  					</div>
  				</li>
  				<li class="nav-author">
- 					<div class="dropdown-custom"><a href="javascript:;" class="nav-item-toggle"><img src="<?= base_url() ?>assets/admin/img/author-nav.jpg" alt="" class="rounded-circle" /><span class="nav-item__title">Danial<i class="las la-angle-down nav-item__arrow"></i></span></a>
+ 					<div class="dropdown-custom"><a href="javascript:;" class="nav-item-toggle"><img src="<?= base_url() ?>assets/admin/img/author-nav.jpg" alt="" class="rounded-circle" /><span class="nav-item__title"><?php echo $this->session->userdata('first_name'); ?> <i class="las la-angle-down nav-item__arrow"></i></span></a>
  						<div class="dropdown-parent-wrapper">
  							<div class="dropdown-wrapper">
  								<!-- <div class="nav-author__info">
@@ -100,7 +100,7 @@
  									<ul>
  										<li><a href=""><i class="uil uil-user"></i>Profile</a></li>
  									</ul>
-									<a href="" class="nav-author__signout"><i class="uil uil-sign-out-alt"></i>Sign Out</a>
+									<a href="<?=base_url('auth/logout')?>" class="nav-author__signout"><i class="uil uil-sign-out-alt"></i>Sign Out</a>
  								</div>
  							</div>
  						</div>

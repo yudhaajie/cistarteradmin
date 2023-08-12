@@ -24,15 +24,15 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/vendor_assets/css/star-rating-svg.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/vendor_assets/css/trumbowyg.min.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/vendor_assets/css/wickedpicker.min.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/style.css">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/admin/style.css?v=101">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
 	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <style>
-	.coming-soon img {
+	/* .coming-soon img {
 		width: 297px !important;
 		height: 60px;
-	}
+	} */
 </style>
 
 <body>
@@ -41,10 +41,10 @@
 			<div class="col-lg-12">
 				<div class="bg-white content-center">
 					<div class="coming-soon text-center">
-						<img class="img-fluid" src="assets/images/logo.png">
+						<img class="img-fluid" src="assets/images/logo.png?v=101">
 						<div class="coming-soon__body">
 							<h1>We are coming soon</h1>
-							<p class="subtitle">Another website created by Jalasena.com</p>
+							
 							<div class="counting">
 								<div id="clock" class="counting-area"></div>
 							</div>

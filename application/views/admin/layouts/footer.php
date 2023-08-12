@@ -4,7 +4,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="footer-copyright">
-                  <p><span>© 2023</span><a href="#">Sovware</a></p>
+                  <p><span>© 2023</span></p>
                 </div>
               </div>
               <div class="col-md-6">
@@ -34,7 +34,9 @@
     <div class="overlay-dark-sidebar"></div>
     <div class="customizer-overlay"></div>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBgYKHZB_QKKLWfIRaYPCadza3nhTAbv7c"></script>
-    <script src="<?=base_url()?>assets/admin/vendor_assets/js/jquery/jquery-3.5.1.min.js"></script>
+    <!-- <script src="<?=base_url()?>assets/admin/vendor_assets/js/jquery/jquery-3.5.1.min.js"></script>
+	 -->
+	 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?=base_url()?>assets/admin/vendor_assets/js/jquery/jquery-ui.js"></script>
     <script src="<?=base_url()?>assets/admin/vendor_assets/js/bootstrap/popper.js"></script>
     <script src="<?=base_url()?>assets/admin/vendor_assets/js/bootstrap/bootstrap.min.js"></script>
@@ -79,5 +81,4 @@
     <script src="<?=base_url()?>/assets/admin/theme_assets/js/jvectormap-init.js"></script>
     <script src="<?=base_url()?>/assets/admin/theme_assets/js/leaflet-init.js"></script>
     <script src="<?=base_url()?>/assets/admin/theme_assets/js/main.js"></script>
-  </body>
-</html>
+  

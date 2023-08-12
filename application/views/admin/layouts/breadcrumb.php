@@ -1,7 +1,7 @@
 <div class="col-lg-12">
 	<div class="breadcrumb-main">
-		<h4 class="text-capitalize breadcrumb-title"><?= $bread['title'] ?></h4>
-		<div class="breadcrumb-action justify-content-center flex-wrap">
+		<h4 class="text-capitalize breadcrumb-title"><?= $sidebar['page'] ?></h4>
+		<div class="breadcrumb-action justify-content-center flex-wrap d-none d-sm-block">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
@@ -12,8 +12,16 @@
 						<?php } ?>
 					</li>
 					<?php if ($sidebar['page'] != "dashboard") { ?>
-						<li class="breadcrumb-item active" aria-current="page"><?= $sidebar['page'] ?> &nbsp;</li>
+						<li class="breadcrumb-item active" aria-current="page"><?= $sidebar['page'] ?></li>
 					<?php } ?>
+					<?php if($sidebar['subPage'] and $sidebar['minorPage'] != Null){ ?>
+						 <li class="breadcrumb-item active" aria-current="page"><a href="<?= base_url('admin/'.$sidebar['pageLink'].'/'.$sidebar['subPageLink']) ?>"><?= $sidebar['subPage'] ?></a> &nbsp;</li>
+					<?php }else{ ?>
+						<li class="breadcrumb-item active" aria-current="page"><?= $sidebar['subPage'] ?> &nbsp;</li>
+						<?php }?>
+					<?php if($sidebar['minorPage']){ ?>
+						<li class="breadcrumb-item active" aria-current="page"><?= $sidebar['minorPage'] ?> &nbsp;</li>
+					<?php }?>
 				</ol>
 			</nav>
 		</div>
