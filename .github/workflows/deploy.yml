@@ -24,7 +24,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest --no-interaction --no-scripts --optimize-autoloader
 
       - name: Run tests
-        run: php artisan test
+        run: ./vendor/bin/phpunit
 
       - name: Deploy to VPS
         env:
@@ -38,4 +38,4 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           echo "$SSH_PASSPHRASE" | ssh-add ~/.ssh/id_rsa
           ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
-          ssh $SSH_USER@$VPS_IP 'cd /var/www/your-app && git pull origin main && composer install && php artisan migrate --force && php artisan config:cache'
+          ssh $SSH_USER@$VPS_IP 'cd /var/www/adminci.infranetmp.com && git pull origin main && composer install && phpunit && php artisan migrate --force && php artisan config:cache'
