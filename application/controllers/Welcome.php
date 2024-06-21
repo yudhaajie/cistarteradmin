@@ -20,7 +20,7 @@ class Welcome extends LSA_Controller {
 	 */
 	public function index()
 	{
-		$this->coba();
+		//$this->coba();
 		$this->load->view('welcome_message');
 	}
 }
