@@ -29,11 +29,13 @@ jobs:
       - name: Deploy to VPS
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
           SSH_USER: ${{ secrets.SSH_USER }}
           VPS_IP: ${{ secrets.VPS_IP }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          echo "$SSH_PASSPHRASE" | ssh-add ~/.ssh/id_rsa
           ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
           ssh $SSH_USER@$VPS_IP 'cd /var/www/your-app && git pull origin main && composer install && php artisan migrate --force && php artisan config:cache'
