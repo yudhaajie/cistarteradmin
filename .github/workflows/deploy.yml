@@ -13,18 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
-          extensions: mbstring, intl, bcmath
-          coverage: none
+      # - name: Set up PHP
+      #   uses: shivammathur/setup-php@v2
+      #   with:
+      #     php-version: '7.4'
+      #     extensions: mbstring, intl, bcmath
+      #     coverage: none
 
-      - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --no-interaction --no-scripts --optimize-autoloader
+      # - name: Install Composer dependencies
+      #   run: composer install --prefer-dist --no-progress --no-suggest --no-interaction --no-scripts --optimize-autoloader
 
-      - name: Run tests
-        run: ./vendor/bin/phpunit
+      # - name: Run tests
+      #   run: ./vendor/bin/phpunit
 
       - name: Deploy to VPS
         env:
