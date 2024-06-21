@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	['dsn']      The full DSN string describe a connection to the database.
 |	['hostname'] The hostname of your database server.
 |	['username'] The username used to connect to the database
-|	['password'] The password used to connect to the database
+|	['password'] The password usssed to connect to the database
 |	['database'] The name of the database you want to connect to
 |	['dbdriver'] The database driver. e.g.: mysqli.
 |			Currently supported:
