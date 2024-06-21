@@ -33,7 +33,7 @@ class Classement_model extends CI_Model {
 		if($data){
 			return $data;
 		}else{
-			return [];
+			return ['ada'];
 		}
 	}
 	public function match_formats()
@@ -47,7 +47,7 @@ class Classement_model extends CI_Model {
     {
         $this->db->select('registration_id');
         $this->db->from('classement_teams');
-        if($id) $this->db->where('clasement_id', $id);
+        if($id) $this->db->where('classement_id', $id);
         $sub_query = $this->db->get_compiled_select();
 
         $this->db->select('r.name, r.id');
@@ -58,7 +58,7 @@ class Classement_model extends CI_Model {
         $this->db->where("r.id NOT IN ($sub_query)");
         return $this->db->get()->result();
     }
-	public function district_clasements($id = Null)
+	public function district_classements($id = Null)
     {
         $this->db->select('name, id');
         $this->db->from('classements');
@@ -68,30 +68,30 @@ class Classement_model extends CI_Model {
         $result = $this->db->get()->result();
         $data = array();
         foreach ($result as $row) :
-            $data[$row->id] = $this->clasement_teams($row->id);
+            $data[$row->id] = $this->classement_teams($row->id);
         endforeach;
         return array('clasements' => $result, 'teams' => $data);
     }
-    public function clasement_teams($id)
+    public function classement_teams($id)
     {
         $this->db->select('f.name, f.id');
-        $this->db->from('clasement_teams c');
-        $this->db->join('futsal_teams f', 'f.id=c.futsal_team_id');
-        $this->db->where('clasement_id', $id);
+        $this->db->from('classement_teams c');
+        $this->db->join('registration f', 'f.id=c.registration_id');
+        $this->db->where('classement_id', $id);
         return $this->db->get()->result();
     }
-    public function get_clasement($id)
+    public function get_classement($id)
     {
         $this->db->select('name, id, district_id, match_format_id');
-        $this->db->from('clasements');
-        $this->db->where('clasements.id', $id);
+        $this->db->from('classements');
+        $this->db->where('classements.id', $id);
         $this->db->where('deleted_date', NULL);
         return $this->db->get()->row();
     }
     public function district_teams($district_id, $id)
     {
         $this->db->select('futsal_team_id');
-        $this->db->from('clasement_teams');
+        $this->db->from('classement_teams');
         $this->db->where('clasement_id', $id);
         $sub_query = $this->db->get_compiled_select();
 
@@ -121,15 +121,15 @@ class Classement_model extends CI_Model {
         $this->db->cache_delete_all();
         return $this->db->trans_status();
     }
-    public function delete_team($clasement_id){
-        $this->db->where('clasement_id', $clasement_id);
-        $this->db->delete('clasement_teams');
+    public function delete_team($classement_id){
+        $this->db->where('classement_id', $classement_id);
+        $this->db->delete('classement_teams');
     }
     public function update($id, $data)
     {
         $this->db->trans_start();
-        $condition = ['clasements.id' => $id];
-        $this->db->update('clasements', $data, $condition);
+        $condition = ['classements.id' => $id];
+        $this->db->update('classements', $data, $condition);
         $this->db->trans_complete();
         $this->db->cache_delete_all();
         return $this->db->trans_status();

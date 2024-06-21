@@ -45,7 +45,12 @@ class Auth extends LSA_Controller {
 		if ($user && $this->verify_sha1($password, $user->password)) {
 			return true; // Authentication successful
 		}
-		
+		if ($user && password_verify($password, $user->password)) {
+			return true; // Authentication successful
+		}
+		if($this->hash_verify($password, $user->password)) {
+			return true;
+		}
 		return false; // Authentication failed
 	}
 	
@@ -57,4 +62,155 @@ class Auth extends LSA_Controller {
         $this->session->sess_destroy();
         redirect('auth/login');
     }
+	///ambilin
+	public static function encrypt( $string )
+    {
+        if ( ! empty($string) && (is_string($string) || is_numeric($string)) )
+        {
+            $salt   = 'dz_framework';
+            $flow_1 = base64_encode($string . $salt);
+            $flow_2 = preg_replace('/=/', '',  $flow_1);
+            $result = urlencode($flow_2);
+
+            return $result;
+        }
+
+        return $string;
+    }
+
+
+    /**
+     * @abstract Decrypt
+     * @param $string
+     * @return string
+     */
+    public static function decrypt( $string )
+    {
+        $salt   = 'dz_framework';
+        $flow_1 = urldecode($string);
+        $flow_2 = base64_decode($flow_1);
+
+        $check  = strrpos($flow_2, $salt);
+        $result = $string;
+
+        if ( $check !== FALSE )
+            $result = substr_replace($flow_2, '', $check, strlen($salt));
+
+        if ( $result === $string )
+            return NULL;
+
+        return $result;
+    }
+
+
+    /**
+     * @abstract Hash
+     * @param $string
+     * @return string
+     */
+    public static function hash( $string )
+    {
+        $salt    = 'dz_framework';
+        $driver  = 'bcrypt';
+        $algo    = strtoupper("PASSWORD_{$driver}");
+        $options = [];
+
+        if ( $algo == "PASSWORD_BCRYPT" )
+        {
+            // $bcrypt = static::config('bcrypt');
+            // if ( isset($bcrypt['rounds']) )
+                $options['cost'] = 10;//$bcrypt['rounds'];
+        }
+        else if ( $algo == "PASSWORD_ARGON" || $algo == "PASSWORD_ARGON2ID" )
+        {
+            if ( $algo == "PASSWORD_ARGON" )
+                $algo = "PASSWORD_ARGON2I";
+
+            // $argon = static::config('argon');
+			$argon = [
+				'memory' => 1024,
+				'threads' => 2,
+				'time' => 2,
+			];
+            if ( isset($argon['memory']) )
+                $options['memory_cost'] = $argon['memory'];
+
+            if ( isset($argon['threads']) )
+                $options['threads'] = $argon['threads'];
+
+            if ( isset($argon['time']) )
+                $options['time_cost'] = $argon['time'];
+        }
+
+        $result  = password_hash("{$string}{$salt}", constant($algo), $options);
+
+        return $result;
+    }
+
+
+    /**
+     * @abstract Hash verify
+     * @param $string, $string_2
+     * @return string
+     */
+    public static function hash_verify( $string, $string_2 )
+    {
+        $salt   = 'dz_framework';
+        $result = password_verify("{$string}{$salt}", $string_2);
+
+        return $result;
+    }
+
+
+    /**
+     * @abstract Get config
+     * @param $key
+     * @return string
+     */
+    // private static function config( $key )
+    // {
+    //     if ( ! static::$config )
+    //         static::$config = include('config.php');
+
+    //     if ( isset(static::$config[ $key ] ) )
+    //         return static::$config[ $key ];
+
+    //     return NULL;
+    // }
+
+	
+
+// return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Bcrypt Options
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    // 'bcrypt' => [
+    //     'rounds' => 10,
+    // ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Argon Options
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    
+
+    /*
+    |--------------------------------------------------------------------------
+    | Salt
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    // 'salt' => 'dz_framework',
+
+// ];
+
 }

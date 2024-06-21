@@ -42,24 +42,6 @@
 				<div class="bg-white content-center">
 					<div class="coming-soon text-center">
 						<img class="img-fluid" src="assets/images/logo.png?v=101">
-						<div class="coming-soon__body">
-							<h1>We are coming soon</h1>
-							
-							<div class="counting">
-								<div id="clock" class="counting-area"></div>
-							</div>
-							
-							<form class="form-inline d-flex justify-content-center my-n10 subscribe-bar">
-								<div class="form-group m-10"><label for="inputPassword2" class="sr-only">name@example.com</label><input type="email" class="form-control" id="inputPassword2" placeholder="name@example.com"></div><button type="submit" class="btn btn-primary m-10 text-uppercase btn-lg px-20">Subscribe</button>
-							</form>
-						</div>
-						<div class="coming-social">
-							<ul class="d-flex justify-content-center">
-								<li><a href="https://www.facebook.com/WebDesainIDN" target="_blank" class="bg-facebook rounded-circle"><i class="lab la-facebook-f"></i></a></li>
-								<!-- <li><a href="#" class="bg-twitter rounded-circle"><i class="lab la-twitter"></i></a></li>
-								<li><a href="#" class="bg-instagram rounded-circle"><i class="lab la-instagram"></i></a></li> -->
-							</ul>
-							<p>2023 © Jalasena.com</p>
 						</div>
 					</div>
 				</div>

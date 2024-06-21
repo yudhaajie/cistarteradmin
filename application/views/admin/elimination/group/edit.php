@@ -28,16 +28,17 @@
 												<h5 class="fw-500">Match Group Information</h5>
 											</div>
 											<div class="edit-profile__body">
-												<form method="post" action="<?= base_url('admin/district-elimination/group_management/store') ?>">
+												<form method="post" action="<?= base_url('admin/district-elimination/group_management/update/'.$id) ?>">
 													<div class="form-group mb-25">
 														<div class="DistrictOption">
 															<label for="DistrictOption">District </label>
-															<select class="js-example-basic-single js-states form-control" id="DistrictOption" name="district" required>
+															<select class="js-example-basic-single js-states form-control" id="DistrictOption" name="district" required readonly aria-readonly="true">
 																<option value="">Choose district</option>
 																<?php
 																foreach ($districts as $district) : ?>
-																	<option value="<?= $district->id ?>-<?= $district->area_id ?>-<?= $district->regional_id ?>">
-																		<?= $district->area ?> - <?= $district->name ?>
+																	<option value="<?= $district->id ?>-<?= $district->area_id ?>-<?= $district->regional_id ?>"
+																	<?= (($district->id == $classement->district_id) ? "selected" : '')?>
+																	> 																		<?= $district->area ?> - <?= $district->name ?>
 																	</option>
 																<?php endforeach; ?>
 															</select>
@@ -45,18 +46,7 @@
 													</div>
 													<div class="form-group mb-25">
 														<label for="name1">name</label>
-														<input type="text" name="title" required class="form-control" id="name1" placeholder="Group Name" />
-													</div>
-													<div class="form-group mb-25">
-														<div class="DistrictOption">
-															<label for="DistrictOption">Parent Group </label>
-															<div id="parentList">
-															<select class="js-example-basic-single js-states form-control" id="DistrictOption" name="parent">
-																<option value="">Set as parent</option>
-																
-															</select>
-															</div>
-														</div>
+														<input type="text" name="title" required class="form-control" id="name1" value="<?=$classement->name?>" placeholder="Group Name" />
 													</div>
 													<div class="form-group mb-25">
 														<div class="matchTypeOption">
@@ -65,7 +55,9 @@
 																<option value="">Choose Match Type</option>
 																<?php
 																foreach ($formats as $format) : ?>
-																	<option value="<?= $format->id ?>"><?= $format->name ?></option>
+																	<option value="<?= $format->id ?>"
+																	<?= (($format->id == $classement->match_format_id) ? "selected" : "")?>
+																	><?= $format->name ?></option>
 																<?php endforeach; ?>
 															</select>
 														</div>
@@ -77,8 +69,19 @@
 													<div class="form-group mb-25">
 														<label for="winner">Select Teams </label>
 
-														<div id="teamList"></div>
-													</div>
+														<?php
+                        foreach ($classement_teams as $data) { ?>
+						<div class="form-check">
+                            <input type='checkbox' name='teams[]' id='tim<?= $data->id; ?>' class='form-check-input' value='<?= $data->id ?>' checked> <label class='form-check-label' for='tim<?= $data->id ?>'><?= $data->name ?>
+						</div>
+                            <?php } ?>
+                            <?php
+                            foreach ($teams as $data) { ?>
+							<div class="form-check">
+                                <input type='checkbox' name='teams[]' id='tim<?= $data->id; ?>' class='form-check-input' value='<?= $data->id ?>'> <label class='form-check-label' for='tim<?= $data->id ?>'><?= $data->name ?>
+							</div>
+                                <?php } ?>
+													
 													<div class="button-group d-flex pt-sm-25 justify-content-md-end justify-content-start">
 														<a href="javascript:history.back();"><button class="btn btn-light btn-default btn-squared fw-400 text-capitalize radius-md btn-sm" type="button">
 																cancel</button></a>
