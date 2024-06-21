@@ -1,0 +1,11 @@
+<phpunit bootstrap="vendor/autoload.php">
+  <testsuite name="Application Test Suite">
+    <directory>./application/tests</directory>
+  </testsuite>
+  <filter>
+    <whitelist>
+      <directory suffix=".php">./application/controllers</directory>
+      <directory suffix=".php">./application/models</directory>
+    </whitelist>
+  </filter>
+</phpunit>
