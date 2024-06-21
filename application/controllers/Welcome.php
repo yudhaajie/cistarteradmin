@@ -15,7 +15,7 @@ class Welcome extends LSA_Controller {
 	 * config/routes.php, it's displayed at http://example.asdcom/
 	 *
 	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
+	 * map to /index.php/welcome/<method_name>a
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
 	public function index()
