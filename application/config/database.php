@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | page of the User Guide.
 |
 | -------------------------------------------------------------------
-| EXPLANATION OF VARIABLES
+| EXPLANATION OF VARIABLESs
 | -------------------------------------------------------------------
 |
 |	['dsn']      The full DSN string describe a connection to the database.
