@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	['hostname'] The hostname of your database server.
 |	['username'] The username used to connect to the database
 |	['password'] The password usssed to connect to the database
-|	['database'] The name of the database you want to connect to
+|	['database'] The name of the database you want to connect tos
 |	['dbdriver'] The database driver. e.g.: mysqli.
 |			Currently supported:
 |				 cubrid, ibase, mssql, mysql, mysqli, oci8,
