@@ -1,4 +1,6 @@
 <?php
+echo "hai";
+exit();
 /**
  * CodeIgniter
  *
