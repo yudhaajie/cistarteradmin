@@ -35,11 +35,11 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/deploy
           
           # Start SSH agent and add the private key
           eval "$(ssh-agent -s)"
-          ssh-add ~/.ssh/id_rsa
+          ssh-add ~/.ssh/deploy
 
           # Add VPS host key to known hosts
           ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
