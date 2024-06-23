@@ -34,7 +34,7 @@ jobs:
           VPS_IP: ${{ secrets.VPS_IP }}
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy
           chmod 600 ~/.ssh/deploy
           
           # Start SSH agent and add the private key
