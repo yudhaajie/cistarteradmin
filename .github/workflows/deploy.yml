@@ -37,7 +37,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Sync files to server
+      - name: Deploy to Server
         run: |
-          rsync -avz --exclude='.git' --exclude='vendor' --exclude='tests' ./ imp-vps@infranet:/var/www/adminci.infranetmp.com
-          ssh imp-vps@infranet "cd /var/www/adminci.infranetmp.com && composer install --no-dev"
+          ssh user@your_server "cd /var/www/codeigniter && git pull origin main && composer install --no-dev"
