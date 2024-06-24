@@ -33,16 +33,16 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           VPS_IP: ${{ secrets.VPS_IP }}
         run: |
-          #mkdir -p ~/.ssh
-          #echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          #chmod 600 ~/.ssh/id_rsa
+          # mkdir -p ~/.ssh
+          # echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          # chmod 600 ~/.ssh/id_rsa
           
           # Start SSH agent and add the private key
-          eval "$(ssh-agent -s)"
-          ssh-add ~/.ssh/id_rsa
+          # eval "$(ssh-agent -s)"
+          # ssh-add ~/.ssh/id_rsa
 
           # Add VPS host key to known hosts
-          ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
+          # ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
 
           # Execute commands on the remote server
           ssh $SSH_USER@$VPS_IP <<EOF
