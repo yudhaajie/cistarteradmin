@@ -41,8 +41,8 @@
 			<div class="col-lg-12">
 				<div class="bg-white content-center">
 					<div class="coming-soon text-center">
-						<img class="img-fluid" src="assets/images/logo.png?v=101">
-						hai
+						<img class="img-fluid" src="assets/images/logo.png?v=101"><br>
+						hai coba dongs
 						</div>
 					</div>
 				</div>
