@@ -1,6 +1,6 @@
 <?php
-echo "hai hello test";
-exit();
+// echo "hai hello test";
+// exit();
 /**
  * CodeIgniter
  *
