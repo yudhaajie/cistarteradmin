@@ -1,5 +1,5 @@
 <?php
-echo "hai hello";
+echo "hai hello test";
 exit();
 /**
  * CodeIgniter
