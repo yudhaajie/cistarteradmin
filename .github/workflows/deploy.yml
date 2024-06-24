@@ -44,7 +44,7 @@ jobs:
           chmod 644 ~/.ssh/known_hosts 
 
       - name: Debug SSH connection to GitHub
-        run: ssh -T git@github.com "echo SSH connection successful"
+        run: ssh -T git@github.com
 
       - name: Deploy to Server
         run: |
