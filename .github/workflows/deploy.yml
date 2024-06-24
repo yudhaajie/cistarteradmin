@@ -13,39 +13,32 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --no-interaction --no-scripts --optimize-autoloader
-
-      - name: Run tests
-        run: ./vendor/bin/phpunit
-
-      - name: Deploy to VPS
+      - name: Create SSH directory and add key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa_new
+          chmod 600 ~/.ssh/id_rsa_new
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          VPS_IP: ${{ secrets.VPS_IP }}
+
+      - name: Start ssh-agent and add SSH key
         run: |
-          # Create the .ssh directory
-          # mkdir -p ~/.ssh
-
-          # Add the private key to a file
-          # echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa_new
-          # chmod 600 /home/runner/.ssh/id_rsa_new
-
-          # Start the ssh-agent
           eval $(ssh-agent -s)
+          ssh-add ~/.ssh/id_rsa_new
 
-          # Add the SSH key to the ssh-agent
-          echo "$SSH_PASSPHRASE" | ssh-add ~/.ssh/id_rsa_new
+      - name: Add server to known_hosts
+        run: ssh-keyscan -H $VPS_IP >> ~/.ssh/known_hosts
+        env:
+          VPS_IP: ${{ secrets.VPS_IP }}
 
-          # Add the server to known hosts
-          ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
-
-          # Execute deployment commands using the specific key
-          ssh -i /home/imp-vps/.ssh/id_rsa_new -o StrictHostKeyChecking=no $SSH_USER@$VPS_IP <<EOF
+      - name: Deploy to VPS
+        run: |
+          ssh -i ~/.ssh/id_rsa_new -o StrictHostKeyChecking=no $SSH_USER@$VPS_IP << 'EOF'
           cd /var/www/adminci.infranetmp.com
           sudo git pull origin main
           composer install --no-interaction --prefer-dist --optimize-autoloader
           ./vendor/bin/phpunit
           EOF
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          VPS_IP: ${{ secrets.VPS_IP }}
