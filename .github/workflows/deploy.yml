@@ -30,20 +30,20 @@ jobs:
           mkdir -p ~/.ssh
 
           # Add the private key to a file
-          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa_new
+          chmod 600 ~/.ssh/id_rsa_new
 
           # Start the ssh-agent
           eval $(ssh-agent -s)
 
           # Add the SSH key to the ssh-agent
-          echo "$SSH_PASSPHRASE" | ssh-add ~/.ssh/id_rsa
+          echo "$SSH_PASSPHRASE" | ssh-add ~/.ssh/id_rsa_new
 
           # Add the server to known hosts
           ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
 
           # Execute deployment commands using the specific key
-          ssh -i /home/imp-vps/.ssh/id_rsa -o StrictHostKeyChecking=no $SSH_USER@$VPS_IP <<EOF
+          ssh -i /home/imp-vps/.ssh/id_rsa_new -o StrictHostKeyChecking=no $SSH_USER@$VPS_IP <<EOF
           cd /var/www/adminci.infranetmp.com
           sudo git pull origin main
           composer install --no-interaction --prefer-dist --optimize-autoloader
