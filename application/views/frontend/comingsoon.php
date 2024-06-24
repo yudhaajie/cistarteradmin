@@ -42,7 +42,7 @@
 				<div class="bg-white content-center">
 					<div class="coming-soon text-center">
 						<img class="img-fluid" src="assets/images/logo.png?v=101"><br>
-						hai coba dongsa
+						hai coba dongsa test
 						</div>
 					</div>
 				</div>
