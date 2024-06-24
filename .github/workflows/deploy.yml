@@ -41,10 +41,10 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H 103.150.92.6 >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts 
 
       - name: Debug SSH connection to GitHub
-        run: ssh -v git@github.com
+        run: ssh -T git@github.com "echo SSH connection successful"
 
       - name: Deploy to Server
         run: |
