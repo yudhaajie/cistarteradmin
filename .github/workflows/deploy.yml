@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -17,7 +17,7 @@ jobs:
       #   uses: shivammathur/setup-php@v2
       #   with:
       #     php-version: '7.4'
-      #     extensions: mbstring, intl, bcmathw
+      #     extensions: mbstring, intl, bcmath
       #     coverage: none
 
       # - name: Install Composer dependencies
@@ -33,21 +33,14 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           VPS_IP: ${{ secrets.VPS_IP }}
         run: |
-          # mkdir -p ~/.ssh
-          # echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          # chmod 600 ~/.ssh/id_rsa
-          
-          # Start SSH agent and add the private key
-          # eval "$(ssh-agent -s)"
-          # ssh-add ~/.ssh/id_rsa
-
-          # Add VPS host key to known hosts
-          # ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
-
-          # Execute commands on the remote server
-          ssh $SSH_USER@$VPS_IP <<EOF
-            cd /var/www/adminci.infranetmp.com
-            sudo git pull origin main
-            composer install --no-interaction --prefer-dist --optimize-autoloader
-            ./vendor/bin/phpunit
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy
+          chmod 600 ~/.ssh/deploy
+          echo "$SSH_PASSPHRASE" | ssh-add ~/.ssh/deploy
+          ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
+          ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_IP <<EOF
+          cd /var/www/your-app
+          git pull origin main
+          composer install --no-interaction --prefer-dist --optimize-autoloader
+          ./vendor/bin/phpunit
           EOF
