@@ -39,4 +39,4 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh user@your_server "cd /var/www/codeigniter && git pull origin main && composer install --no-dev"
+          ssh user@your_server "cd /var/www/adminci.infranetmp.com && git pull origin main && composer install --no-dev"
