@@ -22,7 +22,7 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add ~/.ssh/id_rsa_new
 
-          ssh-keyscan -H $VPS_IP >> ~/.ssh/known_hosts
+          ssh-keyscan -H $VPS_IP >> ~/.ssh/known_hosts	shell:bash
 
       - name: Deploy to VPS
         run: |
