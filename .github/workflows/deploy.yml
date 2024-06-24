@@ -43,6 +43,9 @@ jobs:
           ssh-keyscan -H 103.150.92.6 >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
+      - name: Test SSH connection
+        run: ssh -o StrictHostKeyChecking=no imp-vps@103.150.92.6 "echo SSH connection successful"
+
       - name: Deploy to Server
         run: |
           ssh imp-vps@103.150.92.6 "cd /var/www/adminci.infranetmp.com && sudo git pull origin main && composer install --no-dev"
