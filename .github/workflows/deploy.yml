@@ -27,7 +27,7 @@ jobs:
           VPS_IP: ${{ secrets.VPS_IP }}
         run: |
           # Create the .ssh directory
-          mkdir -p ~/.ssh
+          # mkdir -p ~/.ssh
 
           # Add the private key to a file
           # echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa_new
@@ -43,7 +43,7 @@ jobs:
           ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
 
           # Execute deployment commands using the specific key
-          ssh -i /home/runner/.ssh/id_rsa_new -o StrictHostKeyChecking=no $SSH_USER@$VPS_IP <<EOF
+          ssh -i /home/imp-vps/.ssh/id_rsa_new -o StrictHostKeyChecking=no $SSH_USER@$VPS_IP <<EOF
           cd /var/www/adminci.infranetmp.com
           sudo git pull origin main
           composer install --no-interaction --prefer-dist --optimize-autoloader
