@@ -43,8 +43,8 @@ jobs:
           ssh-keyscan -H 103.150.92.6 >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-      - name: Test SSH connection
-        run: ssh -o StrictHostKeyChecking=no imp-vps@103.150.92.6 "echo SSH connection successful"
+      - name: Test SSH connection to GitHub
+        run: ssh -o StrictHostKeyChecking=no git@github.com
 
       - name: Deploy to Server
         run: |
