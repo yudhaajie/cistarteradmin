@@ -31,7 +31,7 @@ jobs:
 
           # Add the private key to a file
           echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa_new
-          chmod 600 ~/.ssh/id_rsa_new
+          # chmod 600 ~/.ssh/id_rsa_new
 
           # Start the ssh-agent
           eval $(ssh-agent -s)
