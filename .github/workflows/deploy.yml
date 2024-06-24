@@ -13,14 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up PHP environment (commented out if not needed)
-      # - name: Set up PHP
-      #   uses: shivammathur/setup-php@v2
-      #   with:
-      #     php-version: '7.4'
-      #     extensions: mbstring, intl, bcmath
-      #     coverage: none
-
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest --no-interaction --no-scripts --optimize-autoloader
 
@@ -50,8 +42,8 @@ jobs:
           # Add the server to known hosts
           ssh-keyscan -H "$VPS_IP" >> ~/.ssh/known_hosts
 
-          # Execute deployment commands
-          ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_IP <<EOF
+          # Execute deployment commands using the specific key
+          ssh -i /home/imp-vps/.ssh/id_rsa -o StrictHostKeyChecking=no $SSH_USER@$VPS_IP <<EOF
           cd /var/www/adminci.infranetmp.com
           sudo git pull origin main
           composer install --no-interaction --prefer-dist --optimize-autoloader
